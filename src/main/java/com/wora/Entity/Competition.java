@@ -21,7 +21,7 @@ import java.util.Set;
 @Table(name = "competition")
 public class Competition {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank

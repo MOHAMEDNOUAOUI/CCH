@@ -48,5 +48,13 @@
         <constructor-arg ref="sessionFactory" />
     </bean>
 
+    <bean id="generalResultsDAOImpl" class="com.wora.DAO.impl.GeneralResultsDAOImpl">
+        <constructor-arg ref="sessionFactory" />
+    </bean>
+
+    <bean id="stagesResultsDAOImpl" class="com.wora.DAO.impl.StagesResultsDAOImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
 
 </beans>

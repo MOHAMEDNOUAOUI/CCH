@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class CompetitionDAOImpl extends GenericDAOImpl<Competition> implements CompetitionDAO {
 
@@ -13,4 +15,8 @@ public class CompetitionDAOImpl extends GenericDAOImpl<Competition> implements C
         super(sessionFactory, Competition.class);
     }
 
+    @Override
+    public List<Competition> getAllCOmpetitionsWithStages() {
+        return List.of();
+    }
 }

@@ -30,7 +30,7 @@ public class CyclistServiceImpl implements CyclistService {
 
     @Override
     public List<Cyclist> findAllCyclists() {
-        return cyclistDAO.findAll();
+        return cyclistDAO.findAllCyclistWithCompetitionsAndTeam();
     }
 
     @Override

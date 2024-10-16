@@ -19,10 +19,9 @@ public class CyclistDAOImpl extends GenericDAOImpl<Cyclist> implements CyclistDA
 
     @Override
     public List findAllCyclistWithCompetitionsAndTeam() {
-        Transaction transaction = null;
         Session session = this.getSessionFactory().openSession();
         try{
-            return session.createQuery("from Cyclist c JOIN FETCH c.generalResults gr JOIN FETCH gr.competition JOIN FETCH c.team ").list();
+            return session.createQuery("from Cyclist c").list();
         }catch(Exception e){
             e.printStackTrace();
             return List.of();
