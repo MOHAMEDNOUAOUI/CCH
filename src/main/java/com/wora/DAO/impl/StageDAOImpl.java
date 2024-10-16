@@ -11,7 +11,6 @@ public class StageDAOImpl extends GenericDAOImpl<Stage> implements StageDAO {
 
     @Autowired
     public StageDAOImpl(SessionFactory sessionFactory) {
-        super(Stage.class);
-        setSessionFactory(sessionFactory);
+        super(sessionFactory , Stage.class);
     }
 }

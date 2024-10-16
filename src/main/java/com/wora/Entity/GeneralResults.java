@@ -2,7 +2,12 @@ package com.wora.Entity;
 
 import com.wora.Entity.Embeded.GeneralResultsEmbd;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Getter
+@Setter
 @Entity
 @Table(name = "general_results")
 public class GeneralResults {

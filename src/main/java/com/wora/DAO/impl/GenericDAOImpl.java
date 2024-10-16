@@ -1,17 +1,20 @@
 package com.wora.DAO.impl;
 
 import com.wora.DAO.GenericDAO;
+import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 
+@Getter
 @Setter
 public class GenericDAOImpl<T> implements GenericDAO<T> {
 
@@ -21,9 +24,11 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     private final Class<T> classGeneric;
 
 
-    public GenericDAOImpl(Class<T> classGeneric) {
+    public GenericDAOImpl(SessionFactory sessionFactory ,  Class<T> classGeneric) {
         this.classGeneric = classGeneric;
+        this.sessionFactory = sessionFactory;
     }
+
 
 
     @Override
@@ -62,10 +67,9 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
     @Override
     public List<T> findAll() {
-        Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try{
-            transaction = session.beginTransaction();
+            session.beginTransaction();
             return session.createQuery("from "+classGeneric.getName() , classGeneric).list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +98,6 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
         Session session = sessionFactory.openSession();
         try{
             transaction = session.beginTransaction();
-            transaction.begin();
             T fake = session.find(classGeneric , id);
             transaction.commit();
             return Optional.ofNullable(fake);

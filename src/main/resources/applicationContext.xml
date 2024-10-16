@@ -18,12 +18,34 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"/> this is for hibernate config files -->
         <property name="packagesToScan" value="com.wora.Entity" />
+        
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="competitionDAOImpl" class="com.wora.DAO.impl.CompetitionDAOImpl">
+        <constructor-arg ref="sessionFactory" />
+    </bean>
+
+    <bean id="teamDAOImpl" class="com.wora.DAO.impl.TeamDAOImpl">
+        <constructor-arg ref="sessionFactory" />
+    </bean>
+
+    <bean id="cyclistDAOImpl" class="com.wora.DAO.impl.CyclistDAOImpl">
+        <constructor-arg ref="sessionFactory" />
     </bean>
 
 

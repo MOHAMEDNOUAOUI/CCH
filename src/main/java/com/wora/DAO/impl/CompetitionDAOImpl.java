@@ -9,10 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CompetitionDAOImpl extends GenericDAOImpl<Competition> implements CompetitionDAO {
 
-    @Autowired
     public CompetitionDAOImpl(SessionFactory sessionFactory) {
-        super(Competition.class);
-        setSessionFactory(sessionFactory);
+        super(sessionFactory, Competition.class);
     }
 
 }

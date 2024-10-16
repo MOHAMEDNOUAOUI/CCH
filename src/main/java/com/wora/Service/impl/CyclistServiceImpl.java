@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CyclistServiceImpl implements CyclistService {
 
     private final CyclistDAO cyclistDAO;
-    @Autowired
+
     public CyclistServiceImpl(CyclistDAO cyclistDAO) {
         this.cyclistDAO = cyclistDAO;
     }
