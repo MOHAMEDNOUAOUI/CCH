@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -30,4 +32,5 @@ public class GeneralResults{
     @MapsId("CyclistId")
     @ManyToOne
     private Cyclist cyclist;
+
 }

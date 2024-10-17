@@ -31,6 +31,6 @@ public class Stage {
     @ManyToOne
     private Competition competition;
 
-    @OneToMany(mappedBy = "stage" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "stage" , cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     private Set<StagesResults> stagesResults = new HashSet<>();
 }

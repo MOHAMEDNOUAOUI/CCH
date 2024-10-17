@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "stage_results")
@@ -41,4 +43,5 @@ public class StagesResults {
     @ManyToOne
     @MapsId("stageId")
     private Stage stage;
+
 }

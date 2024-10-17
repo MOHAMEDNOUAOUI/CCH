@@ -1,5 +1,6 @@
 package com.wora.Entity;
 
+import com.wora.DAO.StagesResultsDAO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -44,4 +45,7 @@ public class Cyclist {
 
     @OneToMany(mappedBy = "cyclist" , cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<GeneralResults> generalResults = new HashSet<>();
+
+    @OneToMany(mappedBy = "cyclist" , cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    private  Set<StagesResults> stagesResults = new HashSet<>();
 }

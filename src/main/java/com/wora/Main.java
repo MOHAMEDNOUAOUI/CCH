@@ -20,13 +20,19 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         CyclistService cyclistService = context.getBean(CyclistService.class);
-        GeneralResultsService generalResultsService = context.getBean(GeneralResultsService.class);
-        CompetitionService competitionService = context.getBean(CompetitionService.class);
-        TeamService teamService = context.getBean(TeamService.class);
-        StageService stageService = context.getBean(StageService.class);
 
-        Optional<Competition> competition = competitionService.findCompetitionById(Long.valueOf(1));
-        Competition competition1 = competition.get();
+        List<Cyclist> cyclists = cyclistService.findAllCyclists();
+
+        cyclists.forEach(cyclist -> {
+            System.out.println("Cyclist : " + cyclist.getFirstname() + " " + cyclist.getLastname());
+            System.out.println("Team : " +cyclist.getTeam().getName());
+            cyclist.getStagesResults().forEach(stagesResults -> {
+                System.out.println("Stage : " + stagesResults.getStage().getName());
+                System.out.println("Competition : " + stagesResults.getStage().getCompetition().getName());
+                System.out.println("Duration : " + stagesResults.getDuration());
+                System.out.println("Position : " + stagesResults.getPosition());
+            });
+        });
 
         // for inserting stages
 //        for (int i = 1; i <= 5 ; i++){
