@@ -1,0 +1,31 @@
+-- Create the function
+CREATE OR REPLACE FUNCTION update_positions()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE stage_results
+    SET position = NULL
+    WHERE stage_id = NEW.stage_id;
+
+    WITH ranked AS (
+        SELECT cyclist_id,
+               ROW_NUMBER() OVER (PARTITION BY stage_id ORDER BY duration ASC) AS new_position
+        FROM stage_results
+        WHERE stage_id = NEW.stage_id
+    )
+    UPDATE stage_results
+    SET position = ranked.new_position
+    FROM ranked
+    WHERE stage_results.cyclist_id = ranked.cyclist_id
+      AND stage_results.stage_id = NEW.stage_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- Create the trigger
+CREATE TRIGGER update_position_after_insert
+AFTER INSERT ON stage_results
+FOR EACH ROW
+EXECUTE FUNCTION update_positions();
