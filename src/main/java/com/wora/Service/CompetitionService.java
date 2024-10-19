@@ -11,4 +11,5 @@ public interface CompetitionService {
     List<Competition> findAllCompetitions();
     void deleteCompetition(Competition competition);
     Optional<Competition> findCompetitionById(Long id);
+    Optional<Competition> findCompetitionByName(String name);
 }

@@ -15,8 +15,5 @@ public class CompetitionDAOImpl extends GenericDAOImpl<Competition> implements C
         super(sessionFactory, Competition.class);
     }
 
-    @Override
-    public List<Competition> getAllCOmpetitionsWithStages() {
-        return List.of();
-    }
+
 }

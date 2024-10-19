@@ -43,4 +43,9 @@ public class CompetitionServiceImpl implements CompetitionService {
     public Optional<Competition> findCompetitionById(Long id) {
         return competitionDAO.findById(id);
     }
+
+    @Override
+    public Optional<Competition> findCompetitionByName(String name) {
+        return Optional.empty();
+    }
 }

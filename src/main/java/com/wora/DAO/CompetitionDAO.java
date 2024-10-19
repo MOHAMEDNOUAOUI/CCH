@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface CompetitionDAO extends GenericDAO<Competition> {
 
-    List<Competition> getAllCOmpetitionsWithStages();
-
 }
