@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
+
 public class CyclistCreateDTO {
 
     @NotBlank
