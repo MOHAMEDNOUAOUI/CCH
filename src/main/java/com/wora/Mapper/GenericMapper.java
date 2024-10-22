@@ -1,10 +1,11 @@
 package com.wora.Mapper;
 
-import org.mapstruct.Mapper;
+
+import org.springframework.web.bind.annotation.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+
 public interface GenericMapper<D , T> {
     D toDTO(T entity);
     T toEntity(D dto);

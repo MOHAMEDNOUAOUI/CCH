@@ -20,7 +20,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"/> this is for hibernate config files -->
         <property name="packagesToScan" value="com.wora.Entity" />
-        
+
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>

@@ -11,7 +11,7 @@ public class CyclistController {
 
     @GetMapping
     public String cyclists() {
-        return "TESTING";
+        return "NOT TESTING";
     }
 
 }
