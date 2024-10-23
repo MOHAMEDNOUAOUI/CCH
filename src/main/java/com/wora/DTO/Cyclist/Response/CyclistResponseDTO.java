@@ -1,30 +1,26 @@
-package com.wora.DTO.Cyclist;
+package com.wora.DTO.Cyclist.Response;
 
+import com.wora.DTO.Team.TeamCreateDTO;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
-
-public class CyclistCreateDTO {
-
-    @NotBlank
-    private String firstname;
+public class CyclistResponseDTO {
 
     @NotBlank
-    private String lastname;
-
-    @Positive
-    private int age;
-
+    private String firstName;
+    @NotBlank
+    private String lastName;
     @NotBlank
     private String nationality;
+    @NotBlank
+    private int age;
 
-    private Long teamId;
+    private TeamCreateDTO team;
 }

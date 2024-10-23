@@ -2,9 +2,13 @@ package com.wora.Service.impl;
 
 import com.wora.DAO.CyclistDAO;
 import com.wora.DTO.Cyclist.CyclistCreateDTO;
+import com.wora.DTO.Cyclist.Response.CyclistResponseDTO;
+import com.wora.DTO.Team.TeamCreateDTO;
 import com.wora.Entity.Cyclist;
 import com.wora.Entity.Team;
-import com.wora.Mapper.GenericMapper;
+import com.wora.Mapper.CyclistCreateMapper;
+import com.wora.Mapper.CyclistResponseMapper;
+import com.wora.Mapper.Team.TeamResponseMapper;
 import com.wora.Service.CyclistService;
 import com.wora.Service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +21,12 @@ import java.util.Optional;
 public class CyclistServiceImpl implements CyclistService {
 
     private final CyclistDAO cyclistDAO;
+
     @Autowired
     private TeamService teamService;
 
-    private GenericMapper<CyclistCreateDTO , Cyclist> cyclistMapper;
+    @Autowired
+    private CyclistCreateMapper cyclistCreateMapper;
 
     @Autowired
     public CyclistServiceImpl(CyclistDAO cyclistDAO) {
@@ -28,13 +34,10 @@ public class CyclistServiceImpl implements CyclistService {
     }
 
     @Override
-    public Optional<Cyclist> saveCyclist(CyclistCreateDTO cyclistCreateDTO) {
-        if(cyclistCreateDTO.getTeamId() != null){
-            teamService.findTeamById(cyclistCreateDTO.getTeamId())
-                    .orElseThrow(()-> new RuntimeException("Team not found"));
-        }
-        Cyclist cyclist = cyclistMapper.toEntity(cyclistCreateDTO);
-        return cyclistDAO.save(cyclist);
+    public CyclistResponseDTO saveCyclist(CyclistCreateDTO cyclistCreateDTO) {
+        Cyclist cyclist = cyclistCreateMapper.toEntity(cyclistCreateDTO);
+        cyclistDAO.save(cyclist);
+        return CyclistResponseMapper.INSTANCE.toDTO(cyclist);
     }
 
     @Override
