@@ -21,18 +21,18 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         CyclistService cyclistService = context.getBean(CyclistService.class);
 
-        List<Cyclist> cyclists = cyclistService.findAllCyclists();
-
-        cyclists.forEach(cyclist -> {
-            System.out.println("Cyclist : " + cyclist.getFirstname() + " " + cyclist.getLastname());
-            System.out.println("Team : " +cyclist.getTeam().getName());
-            cyclist.getStagesResults().forEach(stagesResults -> {
-                System.out.println("Stage : " + stagesResults.getStage().getName());
-                System.out.println("Competition : " + stagesResults.getStage().getCompetition().getName());
-                System.out.println("Duration : " + stagesResults.getDuration());
-                System.out.println("Position : " + stagesResults.getPosition());
-            });
-        });
+//        List<Cyclist> cyclists = cyclistService.findAllCyclists();
+//
+//        cyclists.forEach(cyclist -> {
+//            System.out.println("Cyclist : " + cyclist.getFirstname() + " " + cyclist.getLastname());
+//            System.out.println("Team : " +cyclist.getTeam().getName());
+//            cyclist.getStagesResults().forEach(stagesResults -> {
+//                System.out.println("Stage : " + stagesResults.getStage().getName());
+//                System.out.println("Competition : " + stagesResults.getStage().getCompetition().getName());
+//                System.out.println("Duration : " + stagesResults.getDuration());
+//                System.out.println("Position : " + stagesResults.getPosition());
+//            });
+//        });
 
 
 

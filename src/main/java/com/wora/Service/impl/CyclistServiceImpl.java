@@ -2,13 +2,9 @@ package com.wora.Service.impl;
 
 import com.wora.DAO.CyclistDAO;
 import com.wora.DTO.Cyclist.CyclistCreateDTO;
-import com.wora.DTO.Cyclist.Response.CyclistResponseDTO;
-import com.wora.DTO.Team.TeamCreateDTO;
+import com.wora.DTO.Cyclist.CyclistResponseDTO;
 import com.wora.Entity.Cyclist;
-import com.wora.Entity.Team;
-import com.wora.Mapper.CyclistCreateMapper;
-import com.wora.Mapper.CyclistResponseMapper;
-import com.wora.Mapper.Team.TeamResponseMapper;
+import com.wora.Mapper.Cyclistmapper;
 import com.wora.Service.CyclistService;
 import com.wora.Service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +17,32 @@ import java.util.Optional;
 public class CyclistServiceImpl implements CyclistService {
 
     private final CyclistDAO cyclistDAO;
+    private final Cyclistmapper cyclistmapper;
+
 
     @Autowired
     private TeamService teamService;
 
-    @Autowired
-    private CyclistCreateMapper cyclistCreateMapper;
 
     @Autowired
-    public CyclistServiceImpl(CyclistDAO cyclistDAO) {
+    public CyclistServiceImpl(CyclistDAO cyclistDAO , Cyclistmapper cyclistmapper) {
         this.cyclistDAO = cyclistDAO;
+        this.cyclistmapper = cyclistmapper;
     }
 
     @Override
     public CyclistResponseDTO saveCyclist(CyclistCreateDTO cyclistCreateDTO) {
-        Cyclist cyclist = cyclistCreateMapper.toEntity(cyclistCreateDTO);
-        cyclistDAO.save(cyclist);
-        return CyclistResponseMapper.INSTANCE.toDTO(cyclist);
+        Cyclist cyclist = cyclistmapper.toEntity(cyclistCreateDTO);
+        return cyclistmapper.toResponseDto(cyclistDAO.save(cyclist).get());
     }
 
     @Override
     public Optional<Cyclist> updateCyclist(Cyclist cyclist) {
         return cyclistDAO.update(cyclist);
     }
-
     @Override
-    public List<Cyclist> findAllCyclists() {
-        return cyclistDAO.findAllCyclistWithCompetitionsAndTeam();
+    public List<CyclistResponseDTO> findAllCyclists() {
+        return null;
     }
 
     @Override
@@ -56,7 +51,8 @@ public class CyclistServiceImpl implements CyclistService {
     }
 
     @Override
-    public Optional<Cyclist> findCyclistById(Long id) {
-        return cyclistDAO.findById(id);
+    public Optional<CyclistResponseDTO> findCyclistById(Long id) {
+        Optional<Cyclist> cyclist = cyclistDAO.findById(id);
+        return Optional.of(cyclistmapper.toResponseDto(cyclist.get()));
     }
 }

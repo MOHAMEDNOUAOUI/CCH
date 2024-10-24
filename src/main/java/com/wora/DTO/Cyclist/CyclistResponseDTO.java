@@ -1,4 +1,4 @@
-package com.wora.DTO.Cyclist.Response;
+package com.wora.DTO.Cyclist;
 
 import com.wora.DTO.Team.TeamCreateDTO;
 import jakarta.validation.constraints.NotBlank;
@@ -13,14 +13,16 @@ import lombok.Setter;
 @Getter
 public class CyclistResponseDTO {
 
+    private Long id;
+
     @NotBlank
-    private String firstName;
+    private String firstname;
     @NotBlank
-    private String lastName;
+    private String lastname;
     @NotBlank
     private String nationality;
     @NotBlank
     private int age;
-
     private TeamCreateDTO team;
 }
+
