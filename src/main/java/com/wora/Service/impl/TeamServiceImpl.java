@@ -2,7 +2,11 @@ package com.wora.Service.impl;
 
 import com.wora.DAO.TeamDAO;
 import com.wora.DAO.impl.TeamDAOImpl;
+import com.wora.DTO.Team.Response.TeamResponseDTO;
+import com.wora.DTO.Team.TeamCreateDTO;
 import com.wora.Entity.Team;
+import com.wora.Mapper.TeamMapper;
+import com.wora.Mapper.TeamMapperImpl;
 import com.wora.Service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +18,17 @@ import java.util.Optional;
 public class TeamServiceImpl implements TeamService {
 
     private final TeamDAO teamDAO;
+    private final TeamMapper teamMapper;
+
     @Autowired
-    public TeamServiceImpl(TeamDAOImpl teamDAO) {
+    public TeamServiceImpl(TeamDAOImpl teamDAO , TeamMapper teamMapper) {
         this.teamDAO = teamDAO;
+        this.teamMapper = teamMapper;
     }
 
     @Override
-    public Optional<Team> findTeamById(Long id) {
-        return  teamDAO.findById(id);
+    public TeamResponseDTO findTeamById(Long id) {
+        return  teamMapper.toResponseDTO(teamDAO.findById(id).get());
     }
 
     @Override
@@ -35,8 +42,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<Team> findAllTeams() {
-        return teamDAO.findAll();
+    public List<TeamResponseDTO> findAllTeams() {
+        return teamMapper.toResponseDTOList(teamDAO.findAll());
     }
 
     @Override

@@ -82,7 +82,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
         Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try{
-            transaction = session.beginTransaction();
+            transaction = session.getTransaction();
             transaction.begin();
             session.remove(entity);
             transaction.commit();

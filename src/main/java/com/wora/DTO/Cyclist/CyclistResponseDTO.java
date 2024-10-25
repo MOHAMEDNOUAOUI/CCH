@@ -1,5 +1,6 @@
 package com.wora.DTO.Cyclist;
 
+import com.wora.DTO.Team.Response.TeamResponseDTO;
 import com.wora.DTO.Team.TeamCreateDTO;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

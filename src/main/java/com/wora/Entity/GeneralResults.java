@@ -26,11 +26,11 @@ public class GeneralResults{
     private Duration generalduration;
 
     @MapsId("CompetitionId")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Competition competition;
 
     @MapsId("CyclistId")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Cyclist cyclist;
 
 }

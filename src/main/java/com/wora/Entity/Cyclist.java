@@ -40,7 +40,7 @@ public class Cyclist {
     @NotBlank
     private String nationality;
 
-    @ManyToOne(fetch = FetchType.EAGER , optional = false)
+    @ManyToOne(fetch = FetchType.EAGER , optional = false , cascade = CascadeType.ALL)
     private Team team;
 
     @OneToMany(mappedBy = "cyclist" , cascade = CascadeType.ALL,fetch = FetchType.EAGER)

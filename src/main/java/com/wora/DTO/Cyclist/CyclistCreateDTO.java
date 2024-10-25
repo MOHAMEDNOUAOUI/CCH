@@ -14,8 +14,6 @@ import lombok.Setter;
 
 public class CyclistCreateDTO {
 
-    private Long id;
-
     @NotBlank
     private String firstname;
 

@@ -36,11 +36,11 @@ public class StagesResults {
     @Positive
     private Duration duration;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("cyclistId")
     private Cyclist cyclist;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("stageId")
     private Stage stage;
 
